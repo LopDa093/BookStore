@@ -4,13 +4,16 @@
     </h1>
     <p>Rating: 
         <?php
+        //Get all the Reviews for this Book
         $reviews = $book->reviews;
         $count = 0;
         $temp = 0;
+        //Add the Review Rating together
         foreach ($reviews as $review) {
             $temp += $review->rating;
             $count = $count + 1;
         }
+        // If there are reviews divide by 5 else say "no ratings"
         if($count != 0){
             echo round($temp / $count,1)."/5";
         }else{

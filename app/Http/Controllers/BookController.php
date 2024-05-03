@@ -29,6 +29,7 @@ class BookController extends Controller
 
     public function store(Request $request)
     {
+        //* Attempt at making the checkboxes work
         // Retrieve values of checkboxes from the request
 
         // $checkbox1 = $request->has('formats[]');
@@ -36,7 +37,8 @@ class BookController extends Controller
         // $checkbox3 = $request->has('formats[]');
 
         // if ($checkbox1 || $checkbox2 || $checkbox3){
-            
+        //     $bookFormatController = new BookFormatController();
+        //     $bookFormatController->store($request);
         // }else{
         //     var_dump($request);
         // }
@@ -52,8 +54,7 @@ class BookController extends Controller
 
         Book::create($formFields);
 
-        // $bookFormatController = new BookFormatController();
-        // $bookFormatController->store($request);
+        
 
         return redirect('/')->with('message', 'Book added succesfully');
     }
