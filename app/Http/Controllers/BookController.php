@@ -29,22 +29,7 @@ class BookController extends Controller
 
     public function store(Request $request)
     {
-        //* Attempt at making the checkboxes work
-        // Retrieve values of checkboxes from the request
-
-        // $checkbox1 = $request->has('formats[]');
-        // $checkbox2 = $request->has('formats[]');
-        // $checkbox3 = $request->has('formats[]');
-
-        // if ($checkbox1 || $checkbox2 || $checkbox3){
-        //     $bookFormatController = new BookFormatController();
-        //     $bookFormatController->store($request);
-        // }else{
-        //     var_dump($request);
-        // }
-
         
-
         $formFields = $request->validate([
             'title' => 'required',
             'author' => 'alpha|required',
@@ -52,9 +37,22 @@ class BookController extends Controller
             'isbn' => ['required', 'unique:books']
         ]);
 
-        Book::create($formFields);
+        //Save Book with respecting ID on creation
+        $book = Book::create($formFields);
+        $bookId = $book->id;
 
-        
+        //Check if any Checkboxes are checked
+        if ($request->formats != null) {
+            $selectedFormats = $request->formats;
+            //Iterate through selected Checkboxes 
+            foreach ($selectedFormats as $format) {
+                //Create new Request with ID and format
+                $newRequest = new Request();
+                $newRequest->merge(['format' => $format,'book_id' =>$bookId]);
+                //Call BookFormatController's store function to cerate new DB Entry
+                app()->call('App\Http\Controllers\BookFormatController@store', ['request' => $newRequest]);
+            }
+        }
 
         return redirect('/')->with('message', 'Book added succesfully');
     }

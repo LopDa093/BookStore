@@ -50,12 +50,12 @@
                 </div>
 
                 <div>
-                    <input type="checkbox" name="formats[]" value="ebook" {{ old('formats') && in_array('paperback', old('formats')) ? 'checked' : '' }} />
+                    <input type="checkbox" name="formats[]" value="ebook" {{ old('formats') && in_array('ebook', old('formats')) ? 'checked' : '' }} />
                     <label for="ebook">Ebook</label>
                 </div>
 
                 <div>
-                    <input type="checkbox" name="formats[]" value="audiobook" {{ old('formats') && in_array('paperback', old('formats')) ? 'checked' : '' }} />
+                    <input type="checkbox" name="formats[]" value="audiobook" {{ old('formats') && in_array('audiobook', old('formats')) ? 'checked' : '' }} />
                     <label for="audiobook">Audiobook</label>
                 </div>
 
