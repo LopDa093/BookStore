@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('content')
+<div class="form-container">
     <form action="/books" method="post">
         @csrf
         {{-- Title Area --}}
@@ -71,4 +72,5 @@
         </div>
         <a href="/"> Back </a>
     </form>
+</div>
 @endSection

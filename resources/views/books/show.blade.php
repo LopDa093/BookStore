@@ -1,4 +1,6 @@
-<div>
+@extends('layout')
+
+<div class="book-container">
     <h1>
         {{$book->title}}
     </h1>
@@ -21,19 +23,18 @@
         }
         ?>
     </p>
-    <p>{{$book->author}}</p>
-    <p>{{$book->publication_date}}</p>
-    <p>{{$book->isbn}}</p>
+    <p>Author: {{$book->author}}</p>
+    <p>Publication Date: {{$book->publication_date}}</p>
+    <p>ISBN: {{$book->isbn}}</p>
     <a href="/">Back</a>
     <a href="/books/{{$book->id}}/edit">Edit</a>
 </div>
 
-<h2>Reviews</h2>
+<h2 style="text-align: center; font-size:32px;">Reviews</h2>
 @foreach ($reviews as $review)
-<div>
+<div class="book-container">
     <h2>User: {{$review->reviewer_name}} </h2>
-    <p>Rating: {{$review->rating}} /5</p>
+    <p>Rating: {{$review->rating}} / 5</p>
     <p>Review: {{$review->review}}</p>
 </div>
-<hr>
 @endforeach

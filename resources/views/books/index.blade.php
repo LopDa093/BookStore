@@ -1,11 +1,11 @@
 @extends('layout')
 @include('partials._search')
 @section('content')
-    <a href="/books/create">Add Book</a>
+    <a href="/books/create" class="add-book-button">Add Book</a>
     @foreach ($books as $book)
-        <div>
+        <div class="book-container"> 
             <h2>{{ $book->title }}</h2>
-            <p>Rating:
+            <p class="rating">Rating:
                 <?php
                 //Get all the Reviews for this Book
                 $reviews = $book->reviews;
@@ -25,7 +25,6 @@
                 ?>
             </p>
             <a href="books/{{ $book->id }}">Details</a>
-            <hr>
         </div>
     @endforeach
 @endsection
